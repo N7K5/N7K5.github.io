@@ -31,13 +31,20 @@ class ScrollBar {
         
         }, false);
 
+        this.scroll_canvas.addEventListener("click", (e) => {
+            // console.log(e.pageY);
+            let pos_y= ~~(e.clientY* ((document.documentElement.scrollHeight || document.body.scrollHeight) / window.innerHeight));
+            this.s.scrollTo(pos_y);
+            console.log(pos_y+ "   "+ this.s.getScroll());
+        }, false);
+
         this.show_scroll();
     }
 
     draw_scroll_bar(y) {
 
         let bar_height= ~~(window.innerHeight*window.innerHeight/(document.documentElement.scrollHeight || document.body.scrollHeight));
-        let pos_y= ~~(y* (window.innerHeight/ ((document.documentElement.scrollHeight || document.body.scrollHeight) - window.innerHeight)))
+        let pos_y= ~~(y* (window.innerHeight/ ((document.documentElement.scrollHeight || document.body.scrollHeight) - window.innerHeight)));
         
         this.ctx.clearRect(0, 0, this.canvasWidth, window.innerHeight);
         this.ctx.fillStyle= "rgba(0, 0, 0, 0.1)";
